@@ -1,8 +1,6 @@
 <template>
-
-<layout-default>
+<LayoutDefault>
     <div>
-        <!-- <HeaderBar/> -->
       <b-row>
         <b-alert v-model="showSuccessAlert" variant="success" dismissible>
           {{ alertMessage }}
@@ -29,7 +27,7 @@
                     @click="showCreateModal"
                   >
                     <b-icon-plus class="text-white"></b-icon-plus>
-                    <span class="h6 text-white">New Plane</span>
+                    <span class="h6 text-white">New Customer</span>
                   </b-button>
                 </b-col>
               </b-row>
@@ -64,14 +62,14 @@
                     <b-icon-pencil-square
                       class="action-item"
                       variant="primary"
-                      @click="getRowData(data.item.id)"
+                      @click="getRowData(data.item.customerId)"
                     ></b-icon-pencil-square>
                   </b-col>
                 <b-col cols="1">
                     <b-icon-trash-fill
                       class="action-item"
                       variant="danger"
-                      @click="showDeleteModal(data.item.id)"
+                      @click="showDeleteModal(data.item.customerId)"
                     ></b-icon-trash-fill>
                   </b-col>
                 </b-row>
@@ -124,13 +122,13 @@
           :customerId="customerId"
         ></delete-modal>
       </b-modal>
-    </div></layout-default>
+    </div></LayoutDefault>
   </template>
- 
+  
   <script>
   import axios from "axios";
   import Overview from "./Overview.vue";
-  import CreateCustomerForm from "./CreateForm.vue";
+  import CreateForm from "./CreateForm.vue";
   import EditForm from "./EditForm.vue";
   import DeleteModal from "./DeleteModal.vue";
   import LayoutDefault from "@/layouts/LayoutDefault.vue";
@@ -139,37 +137,51 @@
   export default {
     components: {
       Overview,
-      CreateCustomerForm,
+      CreateForm,
       EditForm,
       DeleteModal,
       LayoutDefault
-    
     },
     data() {
       return {
         // Note 'isActive' is left out and will not appear in the rendered table
+
+
   
         fields: [
           {
-            key: "id",
+            key: "customerId",
             label: "ID",
             sortable: false,
           },
           {
-            key: "capacity",
-            label: "Capacity",
+            key: "customerFirstName",
+            label: "Description",
             sortable: false,
           },
           {
-            key: "model",
-            label: "Model",
+            key: "customerLastName",
+            label: "Customer Last Name",
             sortable: false,
           },
           {
-            key: "name",
-            label: "Name",
+            key: "customerGender",
+            label: "customer Gender",
             sortable: false,
           },
+          
+          {
+            key: "customerAddress",
+            label: "Customer Address",
+            sortable: false,
+          },
+          {
+            key: "customerPhoneNumber",
+            label: "Customer Phone Number",
+            sortable: false,
+          },
+          
+         
           "actions",
         ],
         items: [],
@@ -195,7 +207,7 @@
       },
       getCustomerData() {
         axios
-          .get("http://localhost:7000/user/findAll")
+          .get("http://localhost:8083/api/customer/list")
           .then((response) => {
             this.tableHeader = "Total Customer";
             this.items = response.data;
@@ -214,20 +226,20 @@
         this.$refs["edit-customer-modal"].hide();
       },
       setFilterTotalIsActive() {
-        this.tableHeader = "Total Customers";
+        this.tableHeader = "Total flight line";
         this.getCustomerData();
       },
       setFilterActiveIsActive() {
-        this.tableHeader = "Active Customers";
+        this.tableHeader = "Active flight line";
         this.items = this.activeCustomersData;
       },
       showAlertCreate() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was created successfully!";
+        this.alertMessage = "flight line was created successfully!";
       },
       showAlertUpdate() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was updated successfully";
+        this.alertMessage = "flight line was updated successfully";
       },
       showDeleteModal(id) {
         this.$refs["delete-customer-modal"].show();
@@ -238,7 +250,7 @@
       },
       showDeleteSuccessModal() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was deleted successfully!";
+        this.alertMessage = "flight line was deleted successfully!";
       },
     },
   };

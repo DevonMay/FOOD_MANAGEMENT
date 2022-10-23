@@ -2,7 +2,7 @@
     <div>
       <b-row class="mt-2 mb-3">
         <h6 class="text-secondary">
-          Are you sure you want to delete this customer from your CRM?
+          Are you sure you want to delete this employee ?
         </h6>
       </b-row>
       <b-row class="mt-2 mb-3">
@@ -14,7 +14,7 @@
       <b-row class="mt-4">
         <b-col>
           <b-button variant="danger" @click="removeCustomerFromData"
-            >Delete Flght Line</b-button
+            >Delete employee</b-button
           >
         </b-col>
         <b-col>
@@ -30,7 +30,8 @@
   export default {
     name: "DeleteCustomerModal",
     props: {
-      customerId: Number,
+      customerId: String
+      
     },
     methods: {
       triggerClose() {
@@ -38,7 +39,7 @@
       },
       removeCustomerFromData() {
         axios
-          .delete(`http://localhost:7000/flight-line/delete/${this.customerId}`)
+          .delete(`http://localhost:8003/api/employee/delete/${this.customerId}`)
           .then(() => {
             this.$emit("reloadDataTable");
             this.$emit("showDeleteAlert");

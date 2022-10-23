@@ -10,7 +10,7 @@
             }"
             @click="totalCustomersIsActiveFilter"
           >
-            <h6>Total Flght Line</h6>
+            <h6>Total Employee</h6>
             <h4>
               <strong>{{ totalCustomers }}</strong>
             </h4>
@@ -25,7 +25,7 @@
             }"
             @click="activeCustomersIsActiveFilter"
           >
-            <h6 class="text-secondary">Active Flght Line</h6>
+            <h6 class="text-secondary">Employee</h6>
             <h4>
               <strong>{{ activeCustomers }}</strong>
             </h4>

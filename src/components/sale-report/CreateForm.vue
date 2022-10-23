@@ -2,46 +2,58 @@
     <b-form class="mt-3">
       <b-row>
         <b-row>
-          <h4 class="text-secondary">Plane Details </h4>
+          <h4 class="text-secondary">Employee Details </h4>
         </b-row>
         <b-col cols="6">
-          <b-form-group id="Capacity " label="Capacity " label-for="Capacity ">
+          <b-form-group id="First-Name" label="First Name " label-for="First Name">
             <b-form-input
-              id="Capacity"
+              id="First-Name"
               type="text"
-              placeholder="Capacity "
-              v-model="plane.capacity"
+              placeholder="First Name"
+              v-model="employee.empFirstName"
             ></b-form-input>
           </b-form-group>
         </b-col>
         <b-col cols="6">
-          <b-form-group id="model" label="model" label-for="model">
+          <b-form-group id="Last-Name" label="Last Name" label-for="Last-Name">
             <b-form-input
-              id="model"
+              id="Last-Name"
+              type="text"
+              placeholder="Last-Name"
+              v-model="employee.empLastName"
+            ></b-form-input>
+          </b-form-group>
+        </b-col>
+      </b-row>
+      <b-row>
+      
+        <b-col cols="6">
+          <b-form-group id="phone-number " label="phone number " label-for="phone-number ">
+            <b-form-input
+              id="phone-number "
+              type="text"
+              placeholder="phone-number "
+              v-model="employee.empPhoneNumber"
+            ></b-form-input>
+          </b-form-group>
+        </b-col>
+        <b-col cols="6">
+          <b-form-group id="role" label="role" label-for="role">
+            <b-form-input
+              id="role"
               type="text"
               placeholder="model"
-              v-model="plane.model"
+              v-model="employee.empRole"
             ></b-form-input>
           </b-form-group>
         </b-col>
       </b-row>
-      <b-row class="mt-3">
-        <b-col cols="6">
-          <b-form-group id="name" label="Name" label-for="Name">
-            <b-form-input
-              id="Name"
-              type="Name"
-              placeholder="Name"
-              v-model="plane.name"
-            ></b-form-input>
-          </b-form-group>
-        </b-col>
-      </b-row>
+  
    
       <b-row class="mt-4">
         <b-col cols="3">
           <b-button variant="primary" class="px-5" @click="addNewCustomer"
-            >Add Plane</b-button
+            >Add Employee</b-button
           >
         </b-col>
         <b-col>
@@ -55,10 +67,10 @@
   import axios from "axios";
   
   export default {
-    name: "CreateCustomerModal",
+    name: "CreateModal",
     data() {
       return {
-        plane: {},
+        employee : {},
       };
     },
     methods: {
@@ -67,7 +79,7 @@
       },
       addNewCustomer() {
         axios
-          .post("http://localhost:7000/plane/save", this.plane)
+          .post("http://localhost:8003/api/employee/save",this.employee)
           .then((response) => {
             console.log(response.data);
             this.$emit("closeCreateModal");

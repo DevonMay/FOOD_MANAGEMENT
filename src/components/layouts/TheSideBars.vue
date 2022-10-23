@@ -4,7 +4,7 @@
       <!-- <router-view/> -->
     </div>
     <sidebar-menu
-      class="sidebar bg-danger"
+      class="sidebar bg-primary"
       :menu="menu"
       :collapsed="collapsed"
       @item-click="onItemClick"
@@ -24,45 +24,23 @@ export default {
           // title: "Getting Started" <i class="fa-thin fa-paper-plane"></i>
         },
         {
-          href: "/light-line",
-          title: "light line",
+          href: "/customer",
+          title: "Customer",
           icon: "fa fa-list-ul"
         },
         {
-          href: "/plane",
-          title: "plane",
-          icon: "fa fa-plane"
+          href: "/employee",
+          title: "Employee",
+          icon: "fa fa-list-ul"
         },
         {
-          href: "/contact",
-          title: "contact",
-          icon: "fa fa-address-book"
+          href: "/admin",
+          title: "Admin",
+          icon: "fa fa-list-ul"
         },
-        {
-          href: "/user",
-          title: "User",
-          icon: "fa fa-user",
-       
-        }
-      
-        ,
-        {
-          href: "/departement",
-          title: "Departement",
-          icon: "fa fa-list-ul",
-          // child: [
-          //   {
-          //     href: "/page/sub-page-1",
-          //     title: "Sub Page 01",
-          //     icon: "fa fa-file-alt"
-          //   },
-          //   {
-          //     href: "/page/sub-page-2",
-          //     title: "Sub Page 02",
-          //     icon: "fa fa-file-alt"
-          //   }
-          // ]
-        }
+        
+
+        
       ],
       collapsed: true
     };

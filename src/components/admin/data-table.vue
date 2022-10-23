@@ -1,18 +1,13 @@
 <template>
-
-
+<LayoutDefault>
     <div>
-        <!-- <HeaderBar/> -->
       <b-row>
-        <b-alert v-model="showSuccessAlert" variant="success" dismissible>
+        <b-alert v-model="showSuccessAlert" variant="success" >
           {{ alertMessage }}
         </b-alert>
       </b-row>
       <b-row>
-        <customer-overview
-          :totalCustomers="numberOfCustomers"
-          :activeCustomers="activeCustomers"
-        ></customer-overview>
+  
       </b-row>
       <b-row class="mt-3">
         <b-card>
@@ -29,7 +24,7 @@
                     @click="showCreateModal"
                   >
                     <b-icon-plus class="text-white"></b-icon-plus>
-                    <span class="h6 text-white">New Customer</span>
+                    <span class="h6 text-white">New Admin</span>
                   </b-button>
                 </b-col>
               </b-row>
@@ -64,14 +59,14 @@
                     <b-icon-pencil-square
                       class="action-item"
                       variant="primary"
-                      @click="getRowData(data.item.id)"
+                      @click="getRowData(data.item.adminID)"
                     ></b-icon-pencil-square>
                   </b-col>
                 <b-col cols="1">
                     <b-icon-trash-fill
                       class="action-item"
                       variant="danger"
-                      @click="showDeleteModal(data.item.id)"
+                      @click="showDeleteModal(data.item.adminID)"
                     ></b-icon-trash-fill>
                   </b-col>
                 </b-row>
@@ -88,11 +83,11 @@
         hide-footer
         title="New Customer"
       >
-        <create-customer-form
+        <create-form
           @closeCreateModal="closeCreateModal"
           @reloadDataTable="getCustomerData"
           @showSuccessAlert="showAlertCreate"
-        ></create-customer-form>
+        ></create-form>
       </b-modal>
   
       <!-- Modal for updating customers -->
@@ -102,12 +97,12 @@
         hide-footer
         title="Edit Customer"
       >
-        <edit-customer-form
+        <edit-form
           @closeEditModal="closeEditModal"
           @reloadDataTable="getCustomerData"
           @showSuccessAlert="showAlertUpdate"
           :customerId="customerId"
-        ></edit-customer-form>
+        ></edit-form>
       </b-modal>
   
       <!-- Delete Customer Modal -->
@@ -117,57 +112,62 @@
         hide-footer
         title="Confirm Deletion"
       >
-        <delete-customer-modal
+        <delete-modal
           @closeDeleteModal="closeDeleteModal"
           @reloadDataTable="getCustomerData"
           @showDeleteAlert="showDeleteSuccessModal"
           :customerId="customerId"
-        ></delete-customer-modal>
+        ></delete-modal>
       </b-modal>
-    </div>
+    </div></LayoutDefault>
   </template>
   
   <script>
   import axios from "axios";
-  import CustomerOverview from "@/components/CustomerOverview.vue";
-  import CreateCustomerForm from "@/components/CreateCustomerForm.vue";
-  import EditCustomerForm from "@/components/EditCustomerForm.vue";
-  import DeleteCustomerModal from "@/components/DeleteCustomerModal.vue";
-  import HeaderBar from "@/components/DeleteCustomerModal.vue";
+  import CreateForm from "./CreateForm.vue";
+  import EditForm from "./EditForm.vue";
+  import DeleteModal from "./DeleteModal.vue";
+  import LayoutDefault from "@/layouts/LayoutDefault.vue";
+
   
   export default {
     components: {
-      CustomerOverview,
-      CreateCustomerForm,
-      EditCustomerForm,
-      DeleteCustomerModal,
-      HeaderBar
+      CreateForm,
+      EditForm,
+      DeleteModal,
+      LayoutDefault
     },
     data() {
       return {
         // Note 'isActive' is left out and will not appear in the rendered table
+
+
   
         fields: [
           {
-            key: "id",
+            key: "adminID",
             label: "ID",
             sortable: false,
           },
           {
-            key: "capacity",
-            label: "Capacity",
+            key: "adminPhoneNumber",
+            label: "Phone Number",
             sortable: false,
           },
           {
-            key: "model",
-            label: "Model",
+            key: "adminLastName",
+            label: "Last Name",
             sortable: false,
           },
+          
           {
-            key: "name",
-            label: "Name",
+            key: "adminFirstName",
+            label: "Last Name",
             sortable: false,
           },
+       
+          
+         
           "actions",
         ],
         items: [],
@@ -193,9 +193,9 @@
       },
       getCustomerData() {
         axios
-          .get("http://localhost:7000/plane/findAll")
+          .get("http://localhost:8083/api/admin/all")
           .then((response) => {
-            this.tableHeader = "Total Customer";
+            this.tableHeader = "Total Admin";
             this.items = response.data;
             this.numberOfCustomers = response.data.length;
           
@@ -211,21 +211,14 @@
       closeEditModal() {
         this.$refs["edit-customer-modal"].hide();
       },
-      setFilterTotalIsActive() {
-        this.tableHeader = "Total Customers";
-        this.getCustomerData();
-      },
-      setFilterActiveIsActive() {
-        this.tableHeader = "Active Customers";
-        this.items = this.activeCustomersData;
-      },
+    
       showAlertCreate() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was created successfully!";
+        this.alertMessage = "admin was created successfully!";
       },
       showAlertUpdate() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was updated successfully";
+        this.alertMessage = "admin was updated successfully";
       },
       showDeleteModal(id) {
         this.$refs["delete-customer-modal"].show();
@@ -236,7 +229,7 @@
       },
       showDeleteSuccessModal() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was deleted successfully!";
+        this.alertMessage = "admin was deleted successfully!";
       },
     },
   };

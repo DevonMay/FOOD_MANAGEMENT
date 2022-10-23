@@ -4,10 +4,13 @@ import Home from "../views/pages/Home.vue";
 import Login from "../views/pages/auth/Login.vue";
 import Register from "../views/pages/auth/Register.vue";
 import NotFound from "../views/pages/NotFound.vue";
-import dataTable from "../components/plane/data-plane-table.vue"
-import dataUserTable from "../components/user/data-user-table.vue"
-import flightLine from "@/components/flight-line/data-flight-line-table.vue"
-import Contact from "@/components/contact/data-table.vue"
+import Customer from "@/components/customer/data-table.vue";
+import Employee from "@/components/employee/data-table.vue";
+import  Admin from "@/components/admin/data-table.vue";
+
+
+
+
 
 Vue.use(VueRouter)
 
@@ -16,28 +19,33 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+   
   },
   {
-    path: "/plane",
-    name: "dataTable",
-    component: dataTable,
-  },
-  
-  {
-    path: "/light-line",
-    name: "flightLine ",
-    component: flightLine ,
-  },
-  {
-    path: "/user",
-    name: "user",
-    component: dataUserTable ,
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+   
   },
  
+  
   {
-    path: "/contact",
-    name: "Contact",
-    component: Contact,
+    path: "/customer",
+    name: "Customer ",
+    component: Customer ,
+    meta:{needAuth:true},
+    beforeEnter: ifAuthenticated
+  },
+
+
+ 
+ 
+  {
+    path: "/employee",
+    name: "Employee",
+    component: Employee,
+    meta:{needAuth:true},
+    beforeEnter: ifAuthenticated
   },
  
  
@@ -45,6 +53,7 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+    
    
   },
  
@@ -65,8 +74,16 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
+  hash: false,
   base: process.env.BASE_URL,
   routes
 })
+function ifAuthenticated  (to, from, next)  {  
+  if (localStorage.getItem("token")) { console.log("login done");
+   next(); 
+   return;
+ }
+  router.push({  name: 'login' });
+}
 
 export default router

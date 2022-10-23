@@ -1,6 +1,8 @@
 <template>
 <LayoutDefault>
+
     <div>
+        <!-- <HeaderBar/> -->
       <b-row>
         <b-alert v-model="showSuccessAlert" variant="success" dismissible>
           {{ alertMessage }}
@@ -27,7 +29,7 @@
                     @click="showCreateModal"
                   >
                     <b-icon-plus class="text-white"></b-icon-plus>
-                    <span class="h6 text-white">New Flght Line</span>
+                    <span class="h6 text-white">New Employee</span>
                   </b-button>
                 </b-col>
               </b-row>
@@ -84,7 +86,7 @@
         ref="create-customer-modal"
         size="xl"
         hide-footer
-        title="New Customer"
+        title="New Employee"
       >
         <create-form
           @closeCreateModal="closeCreateModal"
@@ -98,7 +100,7 @@
         ref="edit-customer-modal"
         size="xl"
         hide-footer
-        title="Edit Customer"
+        title="Edit Employee"
       >
         <edit-form
           @closeEditModal="closeEditModal"
@@ -133,36 +135,52 @@
   import DeleteModal from "./DeleteModal.vue";
   import LayoutDefault from "@/layouts/LayoutDefault.vue";
 
-  
   export default {
     components: {
       Overview,
       CreateForm,
       EditForm,
       DeleteModal,
-      LayoutDefault
+      LayoutDefault 
     },
     data() {
       return {
         // Note 'isActive' is left out and will not appear in the rendered table
+
+        // "empFirstName": "devaon",
+        // "empLastName": "ouh",
+        // "empPhoneNumber": "0727408325",
+        // "empRole": "manager",
+        
   
         fields: [
           {
-            key: "id",
+            key: "empID",
             label: "ID",
             sortable: false,
           },
           {
-            key: "description",
-            label: "Description",
+            key: "empRole",
+            label: "Employee Role",
             sortable: false,
           },
           {
-            key: "departure",
-            label: "Departure",
+            key: "empPhoneNumber",
+            label: "Employee Phone Number",
             sortable: false,
           },
-         
+          {
+            key: "empLastName",
+            label: "Employee LastName",
+            sortable: false,
+          },
+          {
+            key: "empFirstName",
+            label: "Employee Fist Name",
+            sortable: false,
+          },
+       
+       
           "actions",
         ],
         items: [],
@@ -188,9 +206,9 @@
       },
       getCustomerData() {
         axios
-          .get("http://localhost:7000/flight-line/findAll")
+          .get("http://localhost:8083/api/employee/all")
           .then((response) => {
-            this.tableHeader = "Total Customer";
+            this.tableHeader = "Total Employee";
             this.items = response.data;
             this.numberOfCustomers = response.data.length;
           
@@ -207,7 +225,7 @@
         this.$refs["edit-customer-modal"].hide();
       },
       setFilterTotalIsActive() {
-        this.tableHeader = "Total Customers";
+        this.tableHeader = "Total ";
         this.getCustomerData();
       },
       setFilterActiveIsActive() {
@@ -216,11 +234,11 @@
       },
       showAlertCreate() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was created successfully!";
+        this.alertMessage = "Employee was created successfully!";
       },
       showAlertUpdate() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was updated successfully";
+        this.alertMessage = "Employee was updated successfully";
       },
       showDeleteModal(id) {
         this.$refs["delete-customer-modal"].show();
@@ -231,7 +249,7 @@
       },
       showDeleteSuccessModal() {
         this.showSuccessAlert = true;
-        this.alertMessage = "Customer was deleted successfully!";
+        this.alertMessage = "Employee  was deleted successfully!";
       },
     },
   };
