@@ -4,7 +4,7 @@
       <!-- <router-view/> -->
     </div>
     <sidebar-menu
-      class="sidebar bg-primary"
+      class="sidebar  bg-primary"
       :menu="menu"
       :collapsed="collapsed"
       @item-click="onItemClick"
@@ -60,6 +60,7 @@ export default {
 <style>
 #view {
   padding-left: 350px;
+  z-index: 2;
 }
 #view.collapsed {
   padding-left: 50px;

@@ -28,8 +28,8 @@ const routes = [
     path: "/customer",
     name: "Customer ",
     component: Customer ,
-    meta:{needAuth:true},
-    beforeEnter: ifAuthenticated
+    // meta:{needAuth:true},
+    // beforeEnter: ifAuthenticated
   },
   {
     path: "/employee",

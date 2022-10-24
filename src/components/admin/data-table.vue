@@ -81,7 +81,7 @@
         ref="create-customer-modal"
         size="xl"
         hide-footer
-        title="New Customer"
+        title="New Admin"
       >
         <create-form
           @closeCreateModal="closeCreateModal"
@@ -95,7 +95,7 @@
         ref="edit-customer-modal"
         size="xl"
         hide-footer
-        title="Edit Customer"
+        title="Edit Admin"
       >
         <edit-form
           @closeEditModal="closeEditModal"
@@ -139,10 +139,7 @@
     },
     data() {
       return {
-        // Note 'isActive' is left out and will not appear in the rendered table
 
-
-  
         fields: [
           {
             key: "adminID",
@@ -181,6 +178,7 @@
         alertMessage: "",
       };
     },
+    
     mounted() {
       this.getCustomerData();
     },

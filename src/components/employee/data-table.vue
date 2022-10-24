@@ -7,10 +7,10 @@
           </b-alert>
         </b-row>
         <b-row>
-          <overview
+          <!-- <overview
             :totalCustomers="numberOfCustomers"
             :activeCustomers="activeCustomers"
-          ></overview>
+          ></overview> -->
         </b-row>
         <b-row class="mt-3">
           <b-card>
@@ -127,7 +127,7 @@
     
     <script>
     import axios from "axios";
-    import Overview from "./Overview.vue";
+    // import Overview from "./Overview.vue";
     import CreateForm from "./CreateForm.vue";
     import EditForm from "./EditForm.vue";
     import DeleteModal from "./DeleteModal.vue";
@@ -136,7 +136,7 @@
     
     export default {
       components: {
-        Overview,
+        // Overview,
         CreateForm,
         EditForm,
         DeleteModal,
