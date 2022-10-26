@@ -1,4 +1,4 @@
-# airplaine_management_frontend
+# Food_management_frontend
 
 ## Project setup
 ```
