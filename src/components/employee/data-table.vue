@@ -2,7 +2,7 @@
   <LayoutDefault>
       <div>
         <b-row>
-          <b-alert v-model="showSuccessAlert" variant="primary" dismissible>
+          <b-alert v-model="showSuccessAlert" variant="primary" >
             {{ alertMessage }}
           </b-alert>
         </b-row>

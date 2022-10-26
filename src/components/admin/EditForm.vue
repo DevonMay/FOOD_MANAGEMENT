@@ -7,7 +7,7 @@
         <b-col cols="6">
           <b-form-group id="adminFirstName" label="admin First Name" label-for="adminFirstName">
             <b-form-input
-              id="customerFirstName"
+              id="adminFirstName"
               type="text"
               placeholder="Customer First Name "
               v-model="admin.adminFirstName"

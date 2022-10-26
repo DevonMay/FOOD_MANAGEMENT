@@ -4,26 +4,21 @@
     <div>
   <b-navbar toggleable="lg" variant="prima" type="dark" style=" border-bottom: 1px solid black; background:black ;z-index:1" fixed="top">
     <b-navbar-brand to="/"></b-navbar-brand>
-
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="ml-auto text-center">
-     
-        <b-nav-item v-if="isLogin" :to="{ path: '/Taskboard' }" >Food SYSTEM MANAGEMENT</b-nav-item>
-
-        
+        <b-nav-item v-if="isLogin" :to="{ path: '/Taskboard' }" class="ml-5 title" >FOOD SYSTEM MANAGEMENT</b-nav-item> 
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
-      <b-navbar-nav class="login_button">
+      <b-navbar-nav class="login_button ">
           <router-link v-if="!isLogin" to="/login"><button class="btn btn-danger text-center ml-5">Login</button></router-link> 
-        <div v-if="isLogin &&users">
+        <div v-if="isLogin &&users"><span class="text-warning">Hi, {{users.username}} </span>
          <b-dropdown type="dark" class="mr-3"  variant="ligth">
-        <template #button-content>   
-        <b-avatar  src="https://decider.com/wp-content/uploads/2016/06/homer.jpg?quality=90&strip=all&w=646&h=431&crop=1" class="mr-1"></b-avatar><span class="text-warning">{{users.name}} {{users.surname}}</span> 
+           <template #button-content>  
+        <b-avatar  src="https://decider.com/wp-content/uploads/2016/06/homer.jpg?quality=90&strip=all&w=646&h=431&crop=1" class="mr-1"></b-avatar>
       </template>
-       <b-dropdown-item ><b-nav-item ><button  @click="logout" class="btn btn-light ">Logout</button></b-nav-item></b-dropdown-item>
+       <b-dropdown-item ><b-nav-item >  <button  @click="logout" class="btn btn-light  ">Logout</button></b-nav-item></b-dropdown-item>
      </b-dropdown>
          
           </div>
@@ -65,7 +60,10 @@ export default {
 <style scoped>
 .login_button{
   float: right;
-  padding-right: 10px;
+  padding-right: 100px;
   margin-left:  auto;
+}
+.title{
+  margin-left: 50px;
 }
 </style>

@@ -4,7 +4,7 @@
     <div>
         <!-- <HeaderBar/> -->
       <b-row>
-        <b-alert v-model="showSuccessAlert" variant="success" dismissible>
+        <b-alert v-model="showSuccessAlert" variant="success" >
           {{ alertMessage }}
         </b-alert>
       </b-row>

@@ -38,9 +38,56 @@ export default {
           title: "Admin",
           icon: "fa fa-list-ul"
         },
+        ,
+        {
+          href: "/driver",
+          title: "Driver",
+          icon: "fa fa-list-ul"
+        },
+        {
+          href: "/delivery",
+          title: "Delivery",
+          icon: "fa fa-list-ul"
+        },
+        {
+          href: "/commission",
+          title: "Commission",
+          icon: "fa fa-list-ul"
+        },
+        
+        {
+          href: "/remuneration",
+          title: "Remuneration",
+          icon: "fa fa-list-ul"
+        }
+        ,
+        
+        {
+          href: "/supplier",
+          title: "Supplier",
+          icon: "fa fa-list-ul"
+        }
+        ,
+        
+        {
+          href: "/product-sold",
+          title: "Product Sold",
+          icon: "fa fa-list-ul"
+        }
+        ,
+        
+        {
+          href: "/food-item",
+          title: "Food Item",
+          icon: "fa fa-list-ul"
+        },
+        {
+          href: "/food-type",
+          title: "Food Type",
+          icon: "fa fa-list-ul"
+        }
         
 
-        
       ],
       collapsed: true
     };
@@ -73,5 +120,8 @@ export default {
 .sidebar.v-sidebar-menu .collapse-btn:after {
   content: "\f07e";
   font-family: "FontAwesome";
+}
+.sidebar {
+  margin-top:70px;
 }
 </style>

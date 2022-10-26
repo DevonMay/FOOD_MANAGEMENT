@@ -2,15 +2,12 @@
 <LayoutDefault>
     <div>
       <b-row>
-        <b-alert v-model="showSuccessAlert" variant="success" dismissible>
+        <b-alert v-model="showSuccessAlert" variant="success">
           {{ alertMessage }}
         </b-alert>
       </b-row>
       <b-row>
-        <!-- <overview
-          :totalCustomers="numberOfCustomers"
-          :activeCustomers="activeCustomers"
-        ></overview> -->
+       
       </b-row>
       <b-row class="mt-3">
         <b-card>
@@ -233,11 +230,11 @@
       },
       showAlertCreate() {
         this.showSuccessAlert = true;
-        this.alertMessage = "flight line was created successfully!";
+        this.alertMessage = "Customer was created successfully!";
       },
       showAlertUpdate() {
         this.showSuccessAlert = true;
-        this.alertMessage = "flight line was updated successfully";
+        this.alertMessage = "Customer was updated successfully";
       },
       showDeleteModal(id) {
         this.$refs["delete-customer-modal"].show();
@@ -248,7 +245,7 @@
       },
       showDeleteSuccessModal() {
         this.showSuccessAlert = true;
-        this.alertMessage = "flight line was deleted successfully!";
+        this.alertMessage = "Customer was deleted successfully!";
       },
     },
   };
